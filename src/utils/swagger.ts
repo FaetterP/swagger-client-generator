@@ -66,7 +66,13 @@ export function getAllTags(swagger: Swagger): string[] {
   return [...result];
 }
 
-export function convertSchemeToType(schema: Schema): string {
+export function convertSchemeToType(schema: Schema | Ref): string {
+  const ref = (schema as Ref).$ref;
+  if (ref) {
+    return getNameFromRef(ref);
+  }
+
+  schema = schema as Schema;
   switch (schema.type) {
     case "object":
       let fieldsAndTypes: string[] = [];
