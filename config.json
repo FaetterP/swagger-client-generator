@@ -1,0 +1,7 @@
+{
+  "packageName": "someName",
+  "packageVersion": "0.0.1",
+  "mainEntityName": "Users",
+
+  "port": 3000
+}

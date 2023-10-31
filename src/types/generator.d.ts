@@ -18,3 +18,11 @@ export type GeneratorConfig = {
     }[];
   }[];
 };
+
+export type FileConfig = {
+  packageName: string;
+  packageVersion: string;
+  mainEntityName: string;
+
+  port: number;
+};

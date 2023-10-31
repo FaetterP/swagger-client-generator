@@ -1,0 +1,23 @@
+# {{{packageName}}}
+
+Client for {{mainEntityName}} microservice.
+
+## Using
+
+```ts
+import { userService, CreatingUser, User } from "{{{packageName}}}"
+
+class UsersResolver {
+    private usersService: userService;
+ 
+    constructor() {
+        const url = "";
+        this.usersService = new userService(url);
+    }
+
+    someMethod() {
+        const data: CreatingUser = {};
+        this.usersService
+    }
+}
+```

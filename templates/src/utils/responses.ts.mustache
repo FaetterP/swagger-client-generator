@@ -1,0 +1,19 @@
+export type SuccessResponse<T = any> = {
+  status: "ok";
+  data: T;
+};
+
+export type ErrorResponse = {
+  status: "error";
+  message: string;
+};
+
+export type AnyResponse<T = any> = SuccessResponse<T> | ErrorResponse;
+
+export function extractSuccessResponse(response: AnyResponse) {
+  if (response.status !== "ok") {
+    throw new Error(response.message);
+  }
+
+  return response.data;
+}
