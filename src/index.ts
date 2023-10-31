@@ -7,21 +7,19 @@ import { exec } from "child_process";
 
 (() => {
   const swagger = JSON.parse(
-    fs.readFileSync("./swagger.json", "utf-8"),
+    fs.readFileSync("./swagger.json", "utf-8")
   ) as Swagger;
 
   const fileConfig = JSON.parse(
-    fs.readFileSync("./config.json", "utf-8"),
+    fs.readFileSync("./config.json", "utf-8")
   ) as FileConfig;
 
   const config = extractConfig(swagger);
 
   generate(config, fileConfig);
-
-  exec("cd output");
-  exec("npm run format", (err) => {
-    console.log(err || "Formatting");
-  });
-
   console.log("Success");
+
+  exec("npm run format", (err) => {
+    console.log(err || "Formatting finished");
+  });
 })();

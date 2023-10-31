@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "format": "prettier \"**/*.{js,json,jsx,ts,tsx}\" --write"
+    "format": "prettier \"**/*.{js,json,jsx,ts,tsx}\" --write --ignore-path=.prettierignore ./output"
   },
   "keywords": [],
   "author": "FaetterP",
