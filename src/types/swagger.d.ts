@@ -14,6 +14,21 @@ export type Schema =
       items: Schema;
     };
 
+export type Ref = {
+  $ref: string;
+};
+
+export type SuccessResponse = {
+    type: "object";
+    properties: {
+      status: {
+        type: "string";
+        example: "ok";
+      };
+      data: Ref | Schema;
+    };
+  }
+
 export type Swagger = {
   openapi: string;
   paths: {
@@ -32,35 +47,19 @@ export type Swagger = {
           required: true;
           content: {
             "application/json": {
-              schema:
-                | {
-                    $ref: string;
-                  }
-                | Schema;
+              schema: Ref | Schema;
             };
           };
         };
         responses: {
           [status: string]: {
             description: string;
-            content: {
+            content?: {
               "application/json": {
                 schema:
-                  | {
-                      type: "object";
-                      properties: {
-                        status: {
-                          type: "string";
-                          example: "ok";
-                        };
-                        data:
-                          | {
-                              $ref: "#/components/schemas/DriverDTO";
-                            }
-                          | Schema;
-                      };
-                    }
-                  | Schema;
+                  | SuccessResponse
+                  | Schema
+                  | Ref;
               };
             };
           };
