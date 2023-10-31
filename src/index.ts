@@ -15,6 +15,5 @@ const fileConfig = JSON.parse(
 (() => {
   const config = extractConfig(swagger);
 
-  console.log(config)
   generate(config, fileConfig);
 })();

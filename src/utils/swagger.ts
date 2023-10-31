@@ -98,7 +98,7 @@ export function convertQueryToType(
   if (queries.length === 0) return undefined;
 
   return `{${queries.reduce(
-    (a, b) => `${a}${b.name}${b.required ? "!" : ""}:${b.schema.type},`,
+    (a, b) => `${a}${b.name}${b.required ? ":" : "?:"}${b.schema.type},`,
     ""
   )}}`;
 }
