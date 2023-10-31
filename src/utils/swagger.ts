@@ -1,4 +1,4 @@
-import { Schema } from "../types/swagger";
+import { Schema, Swagger } from "../types/swagger";
 
 export function convertSchema(schema: Schema): string {
   switch (schema.type) {
@@ -18,4 +18,18 @@ export function convertSchema(schema: Schema): string {
     default:
       return schema.type;
   }
+}
+
+export function convertQuery(
+  swagger: Swagger,
+  url: string,
+  method: string
+): string {
+  const queries = swagger.paths[url][method].parameters.filter(
+    (par) => par.in === "query"
+  );
+  return `{${queries.reduce(
+    (a, b) => `${a}${b.name}${b.required ? "!" : ""}:${b.schema.type}`,
+    ""
+  )}}`;
 }
