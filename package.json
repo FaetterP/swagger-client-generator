@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "format": "prettier \"**/*.{js,json,jsx,ts,tsx}\" --write"
   },
   "keywords": [],
   "author": "FaetterP",
@@ -17,6 +18,7 @@
   },
   "dependencies": {
     "glob": "^10.3.10",
-    "mustache": "^4.2.0"
+    "mustache": "^4.2.0",
+    "prettier": "^3.0.3"
   }
 }

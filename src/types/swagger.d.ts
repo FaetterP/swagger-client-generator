@@ -19,15 +19,15 @@ export type Ref = {
 };
 
 export type SuccessResponse = {
-    type: "object";
-    properties: {
-      status: {
-        type: "string";
-        example: "ok";
-      };
-      data: Ref | Schema;
+  type: "object";
+  properties: {
+    status: {
+      type: "string";
+      example: "ok";
     };
-  }
+    data: Ref | Schema;
+  };
+};
 
 export type Swagger = {
   openapi: string;
@@ -56,10 +56,7 @@ export type Swagger = {
             description: string;
             content?: {
               "application/json": {
-                schema:
-                  | SuccessResponse
-                  | Schema
-                  | Ref;
+                schema: SuccessResponse | Schema | Ref;
               };
             };
           };
