@@ -51,7 +51,7 @@ Your client will be in `./output` folder.
 ```ts
 src
   ├─ services
-      └─ {tag}.ts // Function here
+      └─ {tag}.ts // Class here
   ├─ types
       └─ schemes.ts // Schemes from $ref
   └─ utils
@@ -67,17 +67,26 @@ export class UsersService {
   private serviceUrl: string;
   private httpClient: AxiosInstance;
 
-  constructor(serviceUrl?: string) {
-    this.serviceUrl = serviceUrl ?? Config.get("service").url;
+  constructor(serviceUrl: string) {
+    this.serviceUrl = serviceUrl;
     this.httpClient = getHttpClient(this.serviceUrl);
   }
 
   async create(body: CreateUserDTO): Promise<UserDTO> {
-    const endpoint = Config.get("endpoints.drivers.create");
-    const response = await this.httpClient.post<AnyResponse<UserDTO>>(endpoint,body);
-    return extractSuccessResponse(response.data);
+    const response = await this.httpClient.post<AnyResponse<UserDTO>>("/drivers", body);
+    return extractSuccessResponse(response.data); // extract data or throw error
   }
 
   // ...
 }
+```
+
+## Using
+
+```ts
+import { UserService, UserDTO, CreateUserDTO } from "path/or/packageName"
+
+const userService = new UserService("baseUrl");
+const data:CreateUserDTO = {/**/};
+const user:UserDTO = await userService.create(data);
 ```
