@@ -19,9 +19,9 @@ export class {{className}}Service {
   }
 
   {{#endpoints}}
-  async {{functionName}}({{#isId}}id: string, {{/isId}}{{#bodyType}}body: {{bodyType}},{{/bodyType}}{{#queryType}}query: {{queryType}},{{/queryType}}): Promise<{{returnedType}}> {
+  async {{functionName}}({{#isId}}id: string, {{/isId}}{{#bodyType}}body: {{bodyType}},{{/bodyType}}{{#queryType}}query: {{queryType}},{{/queryType}}): Promise<{{#returnedType}}{{returnedType}}{{/returnedType}}{{^returnedType}}void{{/returnedType}}> {
     const endpoint = Config.get('endpoints.{{tagName}}.{{functionName}}');
-    const response = await this.httpClient.{{method}}<AnyResponse<{{returnedType}}>>(endpoint{{#isId}}.replace("/{id}", `/${id}`){{/isId}}, {{#bodyType}}body, {{/bodyType}}{{#queryType}}{ params: query }{{/queryType}});
+    const response = await this.httpClient.{{method}}<AnyResponse<{{#returnedType}}{{returnedType}}{{/returnedType}}{{^returnedType}}void{{/returnedType}}>>(endpoint{{#isId}}.replace("/{id}", `/${id}`){{/isId}}, {{#bodyType}}body, {{/bodyType}}{{#queryType}}{ params: query }{{/queryType}});
     return extractSuccessResponse(response.data);
   }
 
