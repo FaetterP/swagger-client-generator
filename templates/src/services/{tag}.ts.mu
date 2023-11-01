@@ -1,5 +1,5 @@
 import path from 'node:path';
-import axios from 'axios';
+import { AxiosInstance } from 'axios';
 import { Config } from '../utils/config';
 import { {{#schemes}}{{.}}, {{/schemes}}} from '../types/schemes';
 import { getHttpClient } from '../utils/httpClient';
@@ -11,7 +11,7 @@ Config.load(clientFullConfigPath);
 
 export class {{className}}Service {
   private serviceUrl: string;
-  private httpClient: axios.AxiosInstance;
+  private httpClient: AxiosInstance;
 
   constructor(serviceUrl?: string) {
     this.serviceUrl = serviceUrl ?? Config.get('service').url;
