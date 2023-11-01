@@ -21,6 +21,7 @@
     "glob": "^10.3.10",
     "mustache": "^4.2.0",
     "node-fetch": "2.6.7",
-    "prettier": "^3.0.3"
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.5"
   }
 }

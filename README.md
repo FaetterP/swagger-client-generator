@@ -34,7 +34,6 @@ Output:
 File saved: output\tsconfig.json
 File saved: output\README.md
 File saved: output\package.json
-File saved: output\config.toml
 File saved: output\src\index.ts
 File saved: output\src\utils\responses.ts
 File saved: output\src\utils\httpClient.ts
@@ -51,12 +50,11 @@ Your client will be in `./output` folder.
 
 ```ts
 src
-  + services
-    + {tag}.ts // Function here
-  + types
-    + schemes.ts // Schemes from $ref
-  + utils
-config.toml // Config with endpoints urls
+  ├─ services
+      └─ {tag}.ts // Function here
+  ├─ types
+      └─ schemes.ts // Schemes from $ref
+  └─ utils
 package.json
 README.md
 tsconfig.json

@@ -6,8 +6,11 @@ import fs from "fs";
 import { exec } from "child_process";
 import fetch from "node-fetch";
 import { isUrl } from "./utils/string";
+import { rimrafSync } from 'rimraf'
 
 (async () => {
+  rimrafSync("./output");
+
   const fileConfig = JSON.parse(
     fs.readFileSync("./config.json", "utf-8"),
   ) as FileConfig;
