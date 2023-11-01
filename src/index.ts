@@ -15,6 +15,7 @@ import { isUrl } from "./utils/string";
   let swagger;
   if (fileConfig.swaggerPath && isUrl(fileConfig.swaggerPath)) {
     swagger = await fetch(fileConfig.swaggerPath);
+    swagger = await swagger.json();
   } else {
     swagger = JSON.parse(
       fs.readFileSync(fileConfig.swaggerPath || "./swagger.json", "utf-8"),
