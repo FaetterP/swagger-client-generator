@@ -10,8 +10,7 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build": "{{#isUseTsup}}tsup{{/isUseTsup}}{{^isUseTsup}}tsc{{/isUseTsup}}",
     "typecheck": "tsc --noEmit --noErrorTruncation --pretty"
   },
   "dependencies": {

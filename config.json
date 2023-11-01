@@ -2,6 +2,7 @@
   "packageName": "someName",
   "packageVersion": "0.0.1",
   "mainEntityName": "Users",
+  "isUseTsup": false,
 
   "port": 3000,
 
