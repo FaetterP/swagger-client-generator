@@ -13,7 +13,9 @@ Fill `./config.json`. This file contains settings for generation.
   packageVersion: "0.0.1",
   mainEntityName: "Users", // Used in readme
 
-  port: 3000 // Server dev port
+  port: 3000, // Server dev port
+
+  swaggerPath?: "" // Path fo swagger.json. Or you can provide url to fetch swagger from it
 }
 ```
 

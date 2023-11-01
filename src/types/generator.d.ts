@@ -25,4 +25,6 @@ export type FileConfig = {
   mainEntityName: string;
 
   port: number;
+
+  swaggerPath?: string;
 };
