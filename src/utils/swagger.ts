@@ -34,6 +34,7 @@ export function extractConfig(swagger: Swagger): GeneratorConfig {
           bodyType: convertRequestBodyToType(swagger, url, method),
           queryType: convertQueryToType(swagger, url, method),
           returnedType: convertReturnedType(swagger, url, method),
+          isNeedExtract: isNeedExtract(swagger, url, method),
         };
         endpoints.push(endpoint);
       }
@@ -160,6 +161,10 @@ export function convertReturnedType(
     }
 
     const successData = (scheme as SuccessResponse).properties.data;
+    if (!successData) {
+      return convertSchemeToType(scheme as Schema);
+    }
+
     const successRef = (successData as Ref).$ref;
     if (successRef) {
       return getNameFromRef(successRef);
@@ -208,4 +213,22 @@ export function getSchemes(
 
 export function getNameFromRef(ref: string): string {
   return ref.split("/").at(-1)!;
+}
+
+export function isNeedExtract(swagger: Swagger, url: string, method: string) {
+  const data = swagger.paths[url][method];
+
+  const statuses = [200, 201];
+  for (const status of statuses) {
+    const schema = data.responses[status]?.content?.["application/json"].schema;
+    if (!schema) continue;
+
+    const ref = (schema as Ref).$ref;
+    if (ref) return false;
+
+    const responseData = (schema as SuccessResponse).properties.data;
+    if (responseData) return true;
+  }
+
+  return false;
 }

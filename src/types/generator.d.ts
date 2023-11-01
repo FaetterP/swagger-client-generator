@@ -15,6 +15,7 @@ export type GeneratorConfig = {
       bodyType?: string;
       isId?: boolean;
       returnedType?: string;
+      isNeedExtract: boolean;
     }[];
   }[];
 };
