@@ -3,14 +3,24 @@
   "version": "{{packageVersion}}",
   "private": false,
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "files": [
     "dist/**"
   ],
   "scripts": {
-    "build": "{{#isUseTsup}}tsup{{/isUseTsup}}{{^isUseTsup}}tsc{{/isUseTsup}}",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "build": "rimraf dist/* && {{#isUseTsup}}tsup{{/isUseTsup}}{{^isUseTsup}}tsc{{/isUseTsup}}",
+    "dev": "{{#isUseTsup}}tsup --watch{{/isUseTsup}}{{^isUseTsup}}npm run build && node dist/index.js{{/isUseTsup}}",
+    "lint": "npx eslint src --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npx eslint src --ext .js,.jsx,.ts,.tsx --fix",
+    "release:major": "npm version major -m \"Released new major version %s on `date +'%Y-%m-%d'`.\"",
+    "release:minor": "npm version minor -m \"Released new minor version %s on `date +'%Y-%m-%d'`.\"",
+    "release:patch": "npm version patch -m \"Released new patch version %s on `date +'%Y-%m-%d'`.\"",
+    "preversion": "git pull --ff-only && npm run build",
+    "postversion": "git push && git push --tags && git log -1 --pretty=%B",
+    "test": "echo \"Error: no test specified\"",
     "typecheck": "tsc --noEmit --noErrorTruncation --pretty"
   },
   "dependencies": {
@@ -19,6 +29,14 @@
   },
   "devDependencies": {
     "@types/node": "^18",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "class-transformer": "^0.5.1",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "rimraf": "^5.0.5",{{#isUseTsup}}
+    "tsup": "^7.2.0",{{/isUseTsup}}
     "typescript": "4.9.4"
   }
 }

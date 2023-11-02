@@ -25,9 +25,7 @@ export type FileConfig = {
   packageName: string;
   packageVersion: string;
   mainEntityName: string;
+  
   isUseTsup: boolean;
-
-  port: number;
-
   swaggerPath?: string;
 };

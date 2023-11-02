@@ -6,7 +6,8 @@ import fs from "fs";
 import { exec } from "child_process";
 import fetch from "node-fetch";
 import { isUrl } from "./utils/string";
-import { rimrafSync } from 'rimraf'
+import { rimrafSync } from "rimraf";
+import { generateTsupConfig } from "./files/tsupConfig";
 
 (async () => {
   rimrafSync("./output");
@@ -29,6 +30,9 @@ import { rimrafSync } from 'rimraf'
   const config = extractConfig(swagger);
 
   generate(config, fileConfig);
+  if (fileConfig.isUseTsup) {
+    generateTsupConfig();
+  }
   console.log("Success");
 
   exec("npm run format", (err) => {

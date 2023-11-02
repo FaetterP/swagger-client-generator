@@ -6,12 +6,12 @@ import { FileConfig, GeneratorConfig } from "../types/generator";
 
 function getMustaches() {
   const pathToTemplates = path.join(__dirname, "..", "..", "templates");
-  return globSync(pathToTemplates + "/**/*.mustache");
+  return globSync(pathToTemplates + "/**/*.mustache", { dot: true });
 }
 
 function getMus() {
   const pathToTemplates = path.join(__dirname, "..", "..", "templates");
-  return globSync(pathToTemplates + "/**/*.mu");
+  return globSync(pathToTemplates + "/**/*.mu", { dot: true });
 }
 
 export function generate(config: GeneratorConfig, fileConfig: FileConfig) {
