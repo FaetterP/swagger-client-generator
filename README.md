@@ -74,12 +74,18 @@ export class UsersService {
 
   async create(body: CreateUserDTO): Promise<UserDTO> {
     const response = await this.httpClient.post<AnyResponse<UserDTO>>("/drivers", body);
-    return extractSuccessResponse(response.data); // extract data or throw error
+    return extractSuccessResponse(response.data);
   }
 
   // ...
 }
 ```
+
+Function `extractSuccessResponse(obj)` used for unpack responses of type `{status:"ok", data:any} | {status:"error", message:string}`.  
+If status is ok then return `obj.data`.  
+If status is error then throw `obj.error`.
+  
+If response of other type then extractSuccessResponse don't generated.
 
 ## Using
 

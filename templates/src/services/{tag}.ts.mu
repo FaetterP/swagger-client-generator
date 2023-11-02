@@ -1,5 +1,5 @@
-import { AxiosInstance } from 'axios';
-import { {{#schemes}}{{.}}, {{/schemes}}} from '../types/schemes';
+import { AxiosInstance } from 'axios';{{#isUsedSchemes}}
+import { {{#schemes}}{{.}}, {{/schemes}}} from '../types/schemes';{{/isUsedSchemes}}
 import { getHttpClient } from '../utils/httpClient';
 import { AnyResponse, extractSuccessResponse } from '../utils/responses';
 

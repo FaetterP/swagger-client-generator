@@ -44,6 +44,7 @@ export function extractConfig(swagger: Swagger): GeneratorConfig {
       tagName: camelize(tagName),
       className: capitalize(camelize(tagName)),
       schemes: [...tagSchemes],
+      isUsedSchemes: tagSchemes.size > 0,
       endpoints,
     };
     tags.push(added);

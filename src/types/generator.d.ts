@@ -5,6 +5,7 @@ export type GeneratorConfig = {
     tagName: string;
     className: string;
 
+    isUsedSchemes: boolean;
     schemes: string[];
 
     endpoints: {
